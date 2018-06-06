@@ -12,7 +12,7 @@ def add_teams(db):
     jsonConvert = json.loads(jsonData)
     for item in jsonConvert:
         for team in jsonConvert[item]['Team']:
-            db.all_teams.insert(team)
+            db.teams.insert(team)
 
 def add_players(db):
     req = requests.get("http://www.fantasybasketballnerd.com/service/players", verify=False)
@@ -20,13 +20,13 @@ def add_players(db):
     jsonConvert = json.loads(jsonData)
     for item in jsonConvert:
         for player in jsonConvert[item]['Player']:
-            db.all_players.insert(player)
+            db.players.insert(player)
 
 def get_players(db):
-    return db.all_players.find_one()
+    return db.players.find_one()
 
 def get_teams(db):
-    return db.all_teams.find_one()
+    return db.teams.find_one()
 
 if __name__ == '__main__':
     db = get_db()
